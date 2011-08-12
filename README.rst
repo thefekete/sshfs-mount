@@ -15,5 +15,6 @@ commands::
     $> sshfs-work remount
 
 This script uses the package libnotify-bin for notifications which
-can be installed with:
+can be installed with::
+
     sudo apt-get install libnotify-bin
