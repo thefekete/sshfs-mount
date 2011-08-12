@@ -33,7 +33,7 @@ MOUNT_POINT="/local/path"
 URI="$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH"
 
 case "$1" in
-	mount)
+    mount)
         if ! mount | grep "$URI on $MOUNT_POINT" > /dev/null
         then
             echo "Mounting $URI on $MOUNT_POINT... "
@@ -58,9 +58,9 @@ case "$1" in
             echo "Nothing to do, exiting"
             exit 1
         fi
-		;;
+        ;;
 
-	unmount)
+    unmount)
         if mount | grep "$URI on $MOUNT_POINT" > /dev/null
         then
             echo "Unmounting $URI from $MOUNT_POINT... "
@@ -79,20 +79,20 @@ case "$1" in
             echo "Nothing to do, exiting"
             exit 1
         fi
-		;;
+        ;;
 
-	remount)
-		$0 unmount &&
-		$0 mount
-		;;
+    remount)
+        $0 unmount &&
+        $0 mount
+        ;;
 
-	*)
+    *)
         echo "sshfs-mount Copyright (C) 2011 Daniel Fekete"
         echo "This program comes with ABSOLUTELY NO WARRANTY. Please see the"
         echo "source for information on licensing."
         echo
-		echo "Usage: $0 mount|unmount|remount"
-		exit
-		;;
+        echo "Usage: $0 mount|unmount|remount"
+        exit
+        ;;
 esac
 
