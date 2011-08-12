@@ -38,7 +38,7 @@ case "$1" in
         then
             echo "Mounting $URI on $MOUNT_POINT... "
             sshfs -C \
-                    -o port=$SSH_PORT
+                    -o port=$SSH_PORT \
                     -o idmap=user \
                     -o reconnect \
                     -o follow_symlinks \
@@ -46,11 +46,11 @@ case "$1" in
                     $URI $MOUNT_POINT &&
             ( # Success
                 echo "Done."
-                notify-send -i server 'Successfully Mounted' "$URI"
+                notify-send -i server 'Successfully Mounted' "$URI" &> /dev/null
                 exit 0) ||
             ( # Failure
                 echo "FAIL!"
-                notify-send -i error 'Failed to mount' "$URI"
+                notify-send -i error 'Failed to mount' "$URI" &> /dev/null
                 exit 1
             )
         else
@@ -67,11 +67,11 @@ case "$1" in
             fusermount -u $MOUNT_POINT &&
             ( # Success
                 echo "Done."
-                notify-send -i server 'Successfully Un-Mounted' "$URI"
+                notify-send -i server 'Successfully Un-Mounted' "$URI" &> /dev/null
                 exit 0) ||
             ( # Failure
                 echo "FAIL!"
-                notify-send -i error 'Failed to unmount' "$URI"
+                notify-send -i error 'Failed to unmount' "$URI" &> /dev/null
                 exit 1
             )
         else
